@@ -4,20 +4,16 @@ var app = express();
 var bcrypt = require('bcryptjs');
 
 
-	var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
-	var session = require('express-session');
+app.use(session({ secret: 'app', cookie: { maxAge: 1*1000*60*60*24*365 }}));
+app.use(cookieParser());
 
-	app.use(session({ secret: 'app', cookie: { maxAge: 1*1000*60*60*24*365 }}));
+var bodyParser = require('body-parser');
 
-    app.use(cookieParser());
-    
-
-	var bodyParser = require('body-parser');
-
-	app.use(bodyParser.urlencoded({ extended: true }));
-
-	app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 var path = require("path");
@@ -32,3 +28,32 @@ var connection = mysql.createConnection({
     database: "shelter_db"
   });
 
+//   app.get('/', function(req, res){
+// 	connection.query('SELECT * FROM pets WHERE ',function (error, results, fields) {
+// 	  if (error) throw error;
+	  
+// 	  res.json(results);
+//   })
+// });
+
+var homeRoutes = require('./routes/home.js');
+
+var blogRoutes = require('./routes/blog.js');
+
+var petRoutes = require('./routes/pet.js');
+
+
+app.use('/', homeRoutes);
+
+app.use('/', blogRoutes);
+
+app.use('/', petRoutes);
+
+
+
+
+app.get('/logout', function(req, res){
+	req.session.destroy(function(err) {
+	   res.redirect('/')
+	})
+})
