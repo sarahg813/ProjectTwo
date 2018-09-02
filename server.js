@@ -21,12 +21,12 @@ var path = require("path");
 app.use(express.static("public"));
 
 var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "",
-    database: "shelter_db"
-  });
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "password",
+  database: "shelter_db"
+});
 
 //   app.get('/', function(req, res){
 // 	connection.query('SELECT * FROM pets WHERE ',function (error, results, fields) {
@@ -38,9 +38,9 @@ var connection = mysql.createConnection({
 
 var homeRoutes = require('./routes/home.js');
 
-var blogRoutes = require('./routes/blog.js');
+var blogRoutes = require('./routes/blogs.js');
 
-var petRoutes = require('./routes/pet.js');
+var petRoutes = require('./routes/pets.js');
 
 
 app.use('/', homeRoutes);
