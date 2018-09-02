@@ -34,6 +34,7 @@ var connection = mysql.createConnection({
 
 
 
+
 var homeRoutes = require('./routes/home.js');
 
 var blogRoutes = require('./routes/blogs.js');
@@ -51,6 +52,7 @@ var loginRoutes = require('./routes/login.js');
 var signupRoutes = require('./routes/signup.js');
 
 var myaccountRoutes = require('./routes/myaccount.js');
+
 
 
 app.use('/', homeRoutes);
