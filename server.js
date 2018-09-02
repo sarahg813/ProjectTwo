@@ -1,7 +1,11 @@
 var mysql = require("mysql");
 var express = require('express');
 var app = express();
+var router = express.Router();
 var bcrypt = require('bcryptjs');
+
+var methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 
 var cookieParser = require('cookie-parser');
@@ -24,23 +28,29 @@ var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "password",
     database: "shelter_db"
   });
 
-//   app.get('/', function(req, res){
-// 	connection.query('SELECT * FROM pets WHERE ',function (error, results, fields) {
-// 	  if (error) throw error;
-	  
-// 	  res.json(results);
-//   })
-// });
+
 
 var homeRoutes = require('./routes/home.js');
 
-var blogRoutes = require('./routes/blog.js');
+var blogRoutes = require('./routes/blogs.js');
 
-var petRoutes = require('./routes/pet.js');
+var petRoutes = require('./routes/pets.js');
+
+var aboutRoutes = require('./routes/about.js');
+
+var contactRoutes = require('./routes/contact.js');
+
+var petDetailRoutes = require('./routes/pet_detail.js');
+
+var loginRoutes = require('./routes/login.js');
+
+var signupRoutes = require('./routes/signup.js');
+
+var myaccountRoutes = require('./routes/myaccount.js');
 
 
 app.use('/', homeRoutes);
@@ -49,11 +59,25 @@ app.use('/', blogRoutes);
 
 app.use('/', petRoutes);
 
+app.use('/', aboutRoutes);
+
+app.use('/', contactRoutes);
+
+app.use('/', petDetailRoute);
+
+app.use('/', loginRoutes);
+
+app.use('/', signupRoutes);
+
+app.use('/', myaccountRoutes);
+
+
+// app.get('/logout', function(req, res){
+// 	req.session.destroy(function(err) {
+// 	   res.redirect('/')
+// 	})
+// })
 
 
 
-app.get('/logout', function(req, res){
-	req.session.destroy(function(err) {
-	   res.redirect('/')
-	})
-})
+app.listen(3000);

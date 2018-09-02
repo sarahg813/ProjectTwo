@@ -15,7 +15,7 @@ CREATE TABLE pets(
     color VARCHAR(255) NOT NULL,
 	pet_bio TEXT NOT NULL,
     adopted BOOLEAN NOT NULL,
-    img_url VARCHAR(255) NOT NULL
+    img_url VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -27,14 +27,20 @@ CREATE TABLE users(
     home_address VARCHAR(255),
     password_hash VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES pets(id)
 );
 
 CREATE TABLE adopted_pets(
 	id INT AUTO_INCREMENT NOT NULL,
-	adopted_id INT NOT NULL,
+	adopted_pet_id INT NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES pets(id)
+	FOREIGN KEY (adopted_pet_id) REFERENCES pets(id)
+);
+
+CREATE TABLE adopted_users(
+	id INT AUTO_INCREMENT NOT NULL,
+	adopted_user_id INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (adopted_user_id) REFERENCES adopted_pets(id)
 );
 
 CREATE TABLE blogs(
