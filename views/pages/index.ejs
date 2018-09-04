@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+
+		<div id="pet"></div>
+		<div id="news"></div>
+
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+$.ajax({
+	url: '/content',
+	method: 'GET'
+}).then(function(data){
+
+	var p, img, ob, form, button, a;
+		
+	for (var i=data.length -1; i>=0; i--){
+		ob = data[i];
+		p = $('<p>');
+        p.text(ob.pet_name);
+        img = $("<img>");
+        img.attr("src", ob.img_url);
+        $('#pet').append(p, img);
+
+	}
+	
+})
+</script>
+</body>
+</html>
