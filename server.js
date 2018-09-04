@@ -50,6 +50,9 @@
     })
   });
 
+var methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 
   //log in 
   app.get('/login', function(req, res){

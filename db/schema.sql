@@ -5,14 +5,14 @@ CREATE DATABASE shelter_db;
 USE shelter_db;
 
 CREATE TABLE pets(
-	id INT NOT NULL AUTO_INCREMENT,
+	id INT AUTO_INCREMENT NOT NULL,
 	pet_name VARCHAR(255) NOT NULL,
 	pet_type VARCHAR(255) NOT NULL,
 	breed VARCHAR(255),
-    age INT NOT NULL,
-    sex VARCHAR(10) NOT NULL,
-    pet_weight INT NOT NULL,
-    color VARCHAR(255) NOT NULL,
+	age INT NOT NULL,
+	sex VARCHAR(255) NOT NULL,
+	pet_weight INT NOT NULL,
+	color VARCHAR(255) NOT NULL,
 	pet_bio TEXT NOT NULL,
     adopted BOOLEAN NOT NULL,
     img_url VARCHAR(255) NOT NULL,
