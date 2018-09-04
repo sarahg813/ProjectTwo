@@ -14,18 +14,17 @@ CREATE TABLE pets(
 	pet_weight INT NOT NULL,
 	color VARCHAR(255) NOT NULL,
 	pet_bio TEXT NOT NULL,
-	adopted BOOLEAN NOT NULL,
-	img_url VARCHAR(255) NOT NULL,
+    adopted BOOLEAN NOT NULL,
+    img_url VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE users(
 	id INT AUTO_INCREMENT NOT NULL,
-	user_id INT NOT NULL,
 	username VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	home_address VARCHAR(255),
-	password_hash VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    home_address VARCHAR(255),
+	pswd VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
 
