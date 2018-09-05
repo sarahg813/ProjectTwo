@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+        <div>
+        <% if(name != "") { %>
+        <li><span>Hello!</span><%= name%></li>
+        <a href="/logout"><button>Log out</button></a>
+        <% }else{ %>
+        <span>Please login</span>
+        <li class="nav-item">
+            <a class="nav-link" href="/login">Sign in</a>
+       </li>
+       <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign up</a>
+       </li>
+        <% } %>
+        </div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

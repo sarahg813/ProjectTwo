@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+	<form name="myForm" onsubmit="return validateForm()" action="/createuser" method="POST">
+    <span>Username: </span><input type="text" name="username"><br>
+    <span>Email: </span><input type="text" name="email"><br>
+    <span>Address: </span><input type="text" name="home_address"><br>
+    <label>Create password :
+        <input name="pswd" id="password" type="password">
+      </label>
+      <br>
+      <label>Confirm password:
+        <input type="password" id="confirm_password">
+        <span id='message'></span>
+      </label>
+      <button>Submit</button>
+</form>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+function validateForm() {
+    var name = document.forms["myForm"]["username"].value;
+    var email = document.forms["myForm"]["email"].value;
+    var add = document.forms["myForm"]["home_address"].value;
+    var pswd = document.forms["myForm"]["pswd"].value;
+    var pswdConfirm = document.forms["myForm"]["confirm_password"].value;
+
+    if (name == "" ) {
+        alert("All field must be filled out");
+        return false;
+    }
+    if (email == "" ) {
+        alert("All field must be filled out");
+        return false;
+    }
+    if (add == "" ) {
+        alert("All field must be filled out");
+        return false;
+    }
+    if (pswd == "" ) {
+        alert("All field must be filled out");
+        return false;
+    }
+    if (pswdConfirm == "" ) {
+        alert("All field must be filled out");
+        return false;
+    }
+    if (four == "" ) {
+        alert("All field must be filled out");
+        return false;
+    }
+    return true;
+    }
+
+    $('#password, #confirm_password').on('keyup', function () {
+	if ($('#password').val() == $('#confirm_password').val()) {
+			$('#message').html('Matching').css('color', 'green');
+	} else 
+			$('#message').html('Not Matching').css('color', 'red');
+})
+</script>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>
