@@ -160,10 +160,15 @@ app.get('/logout', function(req, res){
 	
 });
 
+// app.use('/', loginRoutes);
 
 
 
-
+// app.get('/logout', function(req, res){
+// 	req.session.destroy(function(err) {
+// 	   res.redirect('/')
+// 	})
+// })
 
 
 

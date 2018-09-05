@@ -6,7 +6,6 @@ INSERT INTO pets (pet_name, pet_type, breed, age, sex, pet_weight, color, pet_bi
 VALUES 
 ('Pika', 'dog', 'Lab Mix', 5, 'Male', 85, 'yellow', 'Pika has been professionally trained at a 3 week board-and-train program, knows all of his commands and is a kind and loving dog. He would do so well with a family where there are kids and a stay-at-home parent.',FALSE, '/assets/images/pika-dog.jpg');
 
-
 INSERT INTO pets (pet_name, pet_type, breed, age, sex, pet_weight, color, pet_bio, adopted, img_url) 
 VALUES 
 ('Jax', 'dog', 'Dachshund', 3, 'Male', 27, 'brown', 'Jax is very affectionate and sweet, family friendly, and enjoys meeting new people.', TRUE, '/assets/images/jax-dog.jpg'), 
@@ -52,7 +51,6 @@ VALUES
 INSERT INTO pets (pet_name, pet_type, breed, age, sex, pet_weight, color, pet_bio, adopted, img_url) 
 VALUES 
 ('Nessa', 'rabbit', 'Florida White', 5, 'Female', 3, 'white', 'Nessa is very sweet, but a bit shy. The best home for her would be a quieter one with a very patient family. Once she is comfortable she enjoys being petted.', FALSE, '/assets/images/nessa-rabbit.jpg');
-
 
 INSERT INTO pets (pet_name, pet_type, breed, age, sex, pet_weight, color, pet_bio, adopted, img_url) 
 VALUES 
