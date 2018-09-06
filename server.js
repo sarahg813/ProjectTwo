@@ -145,7 +145,6 @@
     res.render('../views/pages/contact', {user: user});
   });
 
-
   //pets
   app.get('/pets', function(req, res) {
     // connection.query('SELECT * FROM pets',function (error, results, fields) {
@@ -208,7 +207,14 @@
     });
   });
 
+//myaccount
+app.get('/myaccount', function(req, res){
 
+  var user = req.session.username;
+  //var email = req.session.email
+res.render('../views/pages/myaccount', 
+            {name: user} );
+});
 
 
 //log out
@@ -218,7 +224,6 @@ app.get('/logout', function(req, res){
 	})
 	
 });
-
 
 
 
