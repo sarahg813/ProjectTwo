@@ -12,7 +12,7 @@
 
 
 	<main>
-
+ 
 	<div>
 	<% if(user) { %>
 	<p>Welcome! <%= user %></p>
@@ -37,6 +37,8 @@
 			</li>
 			<li><a href="#other" data-toggle="tab" id="otherp">Other</a>
 			</li>
+			<li><a href="#adopted" data-toggle="tab" id="adoptedp">Adopted</a>
+			</li>
 		</ul>
 
 			<div class="tab-content ">
@@ -45,6 +47,8 @@
 				<div class="tab-pane" id="cat">
 				</div>
         		<div class="tab-pane" id="other">
+				</div>
+				<div class="tab-pane" id="adopted">
 				</div>
 			</div>
   </div>
@@ -75,12 +79,13 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
 
-var call1 =  $.ajax('/pets/dog');
-var call2 =  $.ajax('/pets/cat');
-var call3 =  $.ajax('/pets/other');
+var call1 = $.ajax('/pets/dog');
+var call2 = $.ajax('/pets/cat');
+var call3 = $.ajax('/pets/other');
+var call4 = $.ajax('/pets/adopted');
 
-$.when(call1, call2, call3).then(function (data1, data2, data3) {
-	var p, img, img2, img3, ob, ob2, ob3, t, d, s,content, wrapper, blogwrapper, form, button, a;
+$.when(call1, call2, call3, call4).then(function (data1, data2, data3, data4) {
+	var p, img, img2, img3, img4, ob, ob2, ob3, ob4, t, d, s, a, content, wrapper, blogwrapper, adoptedWrapper, otherWrapper, catWrapper, form, button, a;
 		
 	for (var i=data1[0].length -1; i>=0; i--){
 		ob = data1[0][i];
@@ -114,6 +119,17 @@ $.when(call1, call2, call3).then(function (data1, data2, data3) {
 		otherWrapper.attr("data-name", ob3.pet_name);
 		otherWrapper.append(img3, s)
         $('#other').append(otherWrapper);
+	}
+	for (var l=data4[0].length -1; l>=0; l--){
+		ob4 = data4[0][l];
+		a = $('<h4>');
+		a.text(ob4.pet_name);
+		img4 = $("<img>");
+		img4.attr("src", ob4.img_url);
+		adoptedWrapper = $("<div class='animal'>");
+		adoptedWrapper.attr("data-name", ob4.pet_name);
+		adoptedWrapper.append(img4, a)
+        $('#adopted').append(adoptedWrapper);
 	}
 
 	$('.animal').on('click', function(){
@@ -150,7 +166,7 @@ $.when(call1, call2, call3).then(function (data1, data2, data3) {
 // 	});
 // })
 </script>
-	<!-- jquery and bootstrap js scripts-->
+	<!-- jquery and bootstrap js scripts
 	<% include ../partials/jqueryBootstrapScripts %>
 	
 	<script type="text/javascript">
@@ -178,6 +194,6 @@ $.when(call1, call2, call3).then(function (data1, data2, data3) {
                 $('.animalCards').append(articleCard);
             }
         });
-	</script>
+	</script> -->
 </body>
 </html>
