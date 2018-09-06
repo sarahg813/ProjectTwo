@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+	
+
+	<main id="homepage">
+
+    <div>
+	<% if(user) { %>
+	<p>Welcome! <%= user %></p>
+	<a href="/myaccount">My account</a>
+    <a href="/logout">Log out</a>
+    <% }else{ %>
+    <a href="/login">Sign in</a>
+    <a href="/signup">Sign up</a>
+    <% } %>
+	</div>
+	
+		<div id="pet"></div>
+		<div id="news">
+		<h3>News!</h3>
+		</div>
+    
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+
+var call1 =  $.ajax('/content');
+var call2 =  $.ajax('/content/blog');
+
+$.when(call1, call2).then(function (data1, data2) {
+	//console.log(data1[0], data2[0])
+	var p, img, ob, ob2, t, d, content, wrapper, blogwrapper, form, button, a;
+		
+	for (var i=data1[0].length -1; i>=0; i--){
+		ob = data1[0][i];
+		p = $('<h4>');
+		p.text(ob.pet_name);
+        img = $("<img>");
+		img.attr("src", ob.img_url);
+		wrapper = $("<div class='animal'>");
+		wrapper.attr("data-name", ob.pet_name);
+		wrapper.append(img, p)
+        $('#pet').append(wrapper);
+	}
+    for (var j=data2[0].length -1; j>=0; j--){
+		ob2 = data2[0][j];
+		t = $('<h4>');
+		t.text(ob2.title);
+		d = $('<h5>');
+		d.text(ob2.post_time);
+        content = $("<div class='blog_content'>");
+		content.text(ob2.shelter_post);
+		blogwrapper = $("<div class='blog'>");
+		blogwrapper.append(t, d, content);
+        $('#news').append(blogwrapper);
+	}
+	$('.animal').on('click', function(){
+		var ClickOne = $(this);
+		var detail = ClickOne.attr("data-name");
+		//console.log(detail);
+		window.location = "/pet_detail/" + detail;
+	});
+});
+
+
+
+// promise.done(function() {
+//   console.log("This will run if this Promise is resolved.");
+// });
+ 
+// promise.fail(function() {
+//   console.log("This will run if this Promise is rejected.");
+// });
+
+// $.ajax({
+// 	url: '/content',
+// 	method: 'GET'
+// }).then(function(data){
+
+// 	var p, img, ob, form, button, a;
+		
+// 	for (var i=data.length -1; i>=0; i--){
+// 		ob = data[i];
+// 		p = $('<div>');
+//         p.text(ob.pet_name);
+//         img = $("<img>");
+// 		img.attr("src", ob.img_url);
+// 		wrapper = $("<div class='animal'>");
+// 		wrapper.append(p, img)
+//         $('#pet').append(wrapper);
+// 	}
+
+// })
+
+// $.ajax({
+// 	url: '/content/blog',
+// 	method: 'GET'
+// }).then(function(data){
+
+// 	var t, content, ob, form, button, a;
+		
+// 	for (var i=data.length -1; i>=0; i--){
+// 		ob = data[i];
+// 		t = $('<div>');
+//         t.text(ob.title);
+//         content = $("<div>");
+// 		content.text(ob.shelter_post);
+// 		blogwrapper = $("<div class='blog'>");
+// 		wrapper.append(t, content)
+//         $('#news').append(blogwrapper);
+// 	}
+
+// })
+</script>
+</body>
+</html>

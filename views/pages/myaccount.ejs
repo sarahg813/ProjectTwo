@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+                <div>
+                <% if(user) { %>
+                <p>Welcome! <%= user %></p>
+                
+                <a href="/logout">Log out</a>
+                <% }else{ %>
+                <a href="/login">Sign in</a>
+                <a href="/signup">Sign up</a>
+                <% } %>
+                </div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

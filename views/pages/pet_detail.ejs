@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+	
+
+
+	<main>
+	  
+	<div>
+	<% if(user) { %>
+	<p>Welcome! <%= user %></p>
+	<a href="/myaccount">My account</a>
+    <a href="/logout">Log out</a>
+    <% }else{ %>
+    <a href="/login">Sign in</a>
+    <a href="/signup">Sign up</a>
+    <% } %>
+	</div>
+
+	  <div><span>Name: </span> <%= name %> </div>
+	  <div><span>Type: </span><%= type %> </div>
+	  <div><span>Breed: </span><%= breed %> </div>
+	  <div><span>Age: </span><%= age %> </div>
+	  <div><span>Sex: </span><%= sex %> </div>
+	  <div><span>Weight: </span><%= weight %> </div>
+	  <div><span>Color: </span><%= color %> </div>
+	  <div><span>Introduction: </span><%= bio %> </div>
+	  <div><img src="<%= img %>"> </div> 
+	</main>
+	 
+	
+    
+
+
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>

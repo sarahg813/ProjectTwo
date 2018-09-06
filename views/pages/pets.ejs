@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+	
+
+
+	<main>
+
+	<div>
+	<% if(user) { %>
+	<p>Welcome! <%= user %></p>
+	<a href="/myaccount">My account</a>
+    <a href="/logout">Log out</a>
+    <% }else{ %>
+    <a href="/login">Sign in</a>
+    <a href="/signup">Sign up</a>
+    <% } %>
+	</div>
+
+
+	<div id="pets"></div>
+
+
+<div id="tab" class="container">	
+<ul class="nav nav-tabs">
+			<li class="active">
+        <a  href="#dog" data-toggle="tab" id="dogp">Dog</a>
+			</li>
+			<li><a href="#cat" data-toggle="tab" id="catp">Cat</a>
+			</li>
+			<li><a href="#other" data-toggle="tab" id="otherp">Other</a>
+			</li>
+		</ul>
+
+			<div class="tab-content ">
+			  	<div class="tab-pane active" id="dog">
+				</div>
+				<div class="tab-pane" id="cat">
+				</div>
+        		<div class="tab-pane" id="other">
+				</div>
+			</div>
+  </div>
+  
+
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+
+
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+
+var call1 =  $.ajax('/pets/dog');
+var call2 =  $.ajax('/pets/cat');
+var call3 =  $.ajax('/pets/other');
+
+$.when(call1, call2, call3).then(function (data1, data2, data3) {
+	var p, img, img2, img3, ob, ob2, ob3, t, d, s,content, wrapper, blogwrapper, form, button, a;
+		
+	for (var i=data1[0].length -1; i>=0; i--){
+		ob = data1[0][i];
+		p = $('<h4>');
+		p.text(ob.pet_name);
+        img = $("<img>");
+		img.attr("src", ob.img_url);
+		dogWrapper = $("<div class='animal'>");
+		dogWrapper.attr("data-name", ob.pet_name);
+		dogWrapper.append(img, p)
+        $('#dog').append(dogWrapper);
+	}
+    for (var j=data2[0].length -1; j>=0; j--){
+		ob2 = data2[0][j];
+		t = $('<h4>');
+		t.text(ob2.pet_name);
+		img2 = $("<img>");
+		img2.attr("src", ob2.img_url);
+		catWrapper = $("<div class='animal'>");
+		catWrapper.attr("data-name", ob2.pet_name);
+		catWrapper.append(img2, t)
+        $('#cat').append(catWrapper);
+	}
+	for (var k=data3[0].length -1; k>=0; k--){
+		ob3 = data3[0][k];
+		s = $('<h4>');
+		s.text(ob3.pet_name);
+		img3 = $("<img>");
+		img3.attr("src", ob3.img_url);
+		otherWrapper = $("<div class='animal'>");
+		otherWrapper.attr("data-name", ob3.pet_name);
+		otherWrapper.append(img3, s)
+        $('#other').append(otherWrapper);
+	}
+
+	$('.animal').on('click', function(){
+		var ClickOne = $(this);
+		var detail = ClickOne.attr("data-name");
+		//console.log(detail);
+		window.location = "/pet_detail/" + detail;
+	});
+});
+
+// 	$.ajax({
+// 	url: '/content/',
+// 	method: 'GET'
+// }).then(function(data){
+
+// 	var p, img, ob, type, button, a;
+		
+// 	for (var i=data.length -1; i>=0; i--){
+// 		ob = data[i];
+// 		p = $('<h4>');
+//         p.text(ob.pet_name);
+//         img = $("<img>");
+// 		img.attr("src", ob.img_url);
+// 		wrapper = $("<div class='animal'>");
+// 		wrapper.attr("data-name", ob.pet_name);
+// 		wrapper.append(img, p)
+//         $('#pets').append(wrapper);
+// 	}
+// 	$('.animal').on('click', function(){
+// 		var ClickOne = $(this);
+// 		var detail = ClickOne.attr("data-name");
+// 		//console.log(detail);
+// 		window.location = "/pet_detail/" + detail;
+// 	});
+// })
+</script>
+</body>
+</html>
