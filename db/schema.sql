@@ -32,8 +32,21 @@ CREATE TABLE adopted_pets(
 	id INT AUTO_INCREMENT NOT NULL,
 	adopted_pet_id INT NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (adopted_pet_id) REFERENCES pets(id)
+	FOREIGN KEY (adopted_pet_id) REFERENCES pets(id),
+	
 );
+
+CREATE TABLE apply_users(
+	id INT AUTO_INCREMENT NOT NULL,
+	apply_pet_id INT NOT NULL,
+	apply_email VARCHAR(255) NOT NULL,
+	apply_pet_name VARCHAR(255) NOT NULL,
+	adopted_status BOOLEAN NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (apply_pet_id) REFERENCES pets(id),
+	FOREIGN KEY (apply_email) REFERENCES users(email)
+);
+
 
 CREATE TABLE adopted_users(
 	id INT AUTO_INCREMENT NOT NULL,

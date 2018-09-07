@@ -13,7 +13,19 @@
                 <div>
                         <% if(user) { %>
                         <p>Welcome! <%= user %></p>
-
+                        <p>Your email: <%= email %></p>
+                        <p>Your id: <%= userId %></p>
+                        <form name="applyForm" onsubmit="return validateApplyForm()" action="/apply_adopt" method="POST">
+                        <span>Confirm your email: </span><input type="text" name="email"><br>
+                        <label>Tell us about you:
+                                <input name="apply_info" id="apply_info" type="text">
+                        </label>
+                        <br>
+                        <label>which pet do you want to apply for adoption:
+                                <input name="pet_name" type="text" id="apply_pet_name">
+                        </label>
+                        <button>Submit</button>
+                        </form>
                         <a href="/logout">Log out</a>
                         <% }else{ %>
                         <a href="/login">Sign in</a>

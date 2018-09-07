@@ -82,3 +82,12 @@ INSERT INTO shelter_blogs (title, post_time, shelter_post, post_img_url)
 VALUES 
 ('Pinky arrived!', '2018-08-01', 'Pinky enjoys being held, is easy to pick-up, seeks out attention and needs plenty of mouse safe items to chew on.', '/assets/images/pinky-mouse.jpg');
 
+INSERT INTO shelter_blogs (title, post_time, shelter_post, post_img_url) 
+VALUES 
+('Pet Food Pantry!', '2018-08-20', 'Get kibble and kitty litter for your pet when you qualify as a low-income Alameda family.
+When: Second Saturday, 10 a.m. - 12 p.m. 
+Where: Beautiful Shelter, 160 Spear Ave, Santa Clara, CA 95054. Come to the big garage door.', '/assets/images/food-pantry.jpg');
+
+INSERT INTO shelter_blogs (title, post_time, shelter_post, post_img_url) 
+VALUES 
+('Donate Your Jewelry', '2018-08-23', 'Can you spare your gently used jewelry, scarves, hats or gloves for Beautiful Shelter volunteer annual Jewelry & More Holiday Boutique fundraiser for Beautiful Shelter?  Email beautiful_shelter@test by October 1. The event is 4-8 p.m., Thursday, Nov. 15, at a new location.', '/assets/images/donate-jewel.jpg');

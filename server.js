@@ -34,7 +34,7 @@
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "password",
+  password: "",
   database: "shelter_db"
   });
   
@@ -70,17 +70,17 @@
       if (error) throw error;
       // res.json(results);
       if (results.length == 0){
-        res.send('not found');
+        res.render('../views/pages/signup_a');
       }else {
         bcrypt.compare(req.body.pswd, results[0].pswd, function(err, result) {
             if (result == true){
-
+              console.log(results[0]);
               req.session.user = results[0].username;
               req.session.email = results[0].email;
-                //res.send('you are logged in');
+              req.session.id = results[0].id;
               res.redirect('/');
             }else{
-                res.render('../views/pages/signup');
+                res.render('../views/pages/signup_b');
 
             }
         });
@@ -90,11 +90,28 @@
   
     //myaccount
     app.get('/myaccount', function(req, res){
-	
+      var email = req.session.email;
       var user = req.session.user;
-      //var email = req.session.email
-    res.render('../views/pages/myaccount', {user: user} );
+      var userId = req.session.id;
+      
+    res.render('../views/pages/myaccount', {
+      user: user,
+      email: email,
+      userId: userId
+    } );
   });
+
+  app.post('/apply_adopt', function(req, res){
+    res.json(req.body);
+    connection.query('INSERT INTO apply_users (apply_email, apply_pet_name) VALUES (?, ?)', [req.body.apply_email, req.body.apply_pet_name, ],function (error, results, fields) {
+          
+      if (error){
+        res.send('sorry');
+      }else{
+        res.redirect('/');
+      }
+    });
+  })
 
 
   //sign up 
@@ -103,7 +120,7 @@
   });
   
   app.post('/createuser', function(req, res){
-    console.log(req.body);
+    //console.log(req.body);
   
     bcrypt.genSalt(10, function(err, salt) {
       // res.send(salt);
