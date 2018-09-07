@@ -7,61 +7,52 @@
 
 	<header>
 		<% include ../partials/header %>
+		<% include ../partials/accountLogIn %>
 	</header>
 	
 
 
 	<main>
- 
-	<div>
-	<% if(user) { %>
-	<p>Welcome! <%= user %></p>
-	<a href="/myaccount">My account</a>
-    <a href="/logout">Log out</a>
-    <% }else{ %>
-    <a href="/login">Sign in</a>
-    <a href="/signup">Sign up</a>
-    <% } %>
-	</div>
+		<div id="tab" class="container">	
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a  href="#dog" data-toggle="tab" id="dogp">Dog</a>
+				</li>
+				<li>
+					<a href="#cat" data-toggle="tab" id="catp">Cat</a>
+				</li>
+				<li>
+					<a href="#other" data-toggle="tab" id="otherp">Other</a>
+				</li>
+				<li>
+					<a href="#adopted" data-toggle="tab" id="adoptedp">Adopted</a>
+				</li>
+			</ul>
 
-
-	<div id="pets"></div>
-
-
-<div id="tab" class="container">	
-<ul class="nav nav-tabs">
-			<li class="active">
-        <a  href="#dog" data-toggle="tab" id="dogp">Dog</a>
-			</li>
-			<li><a href="#cat" data-toggle="tab" id="catp">Cat</a>
-			</li>
-			<li><a href="#other" data-toggle="tab" id="otherp">Other</a>
-			</li>
-			<li><a href="#adopted" data-toggle="tab" id="adoptedp">Adopted</a>
-			</li>
-		</ul>
-
-			<div class="tab-content ">
-			  	<div class="tab-pane active" id="dog">
+			<!-- <div class="tab-content ">
+				<div class="tab-pane active" id="dog">
 				</div>
 				<div class="tab-pane" id="cat">
 				</div>
-        		<div class="tab-pane" id="other">
+				<div class="tab-pane" id="other">
 				</div>
 				<div class="tab-pane" id="adopted">
 				</div>
+			</div> -->
+			<div class="tab-content">
+				<div class="tab-pane active" id="dog">
+					<section class="animalCards" id="dogCards"></section>
+				</div>
+				<div class="tab-pane" id="cat">
+					<section class="animalCards" id="catCards"></section>
+				</div>
+				<div class="tab-pane" id="other">
+					<section class="animalCards" id="otherCards"></section>
+				</div>
+				<div class="tab-pane" id="adopted">
+					<section class="animalCards" id="adoptedCards"></section>
+				</div>
 			</div>
-  </div>
-  
-
-
-	<main>
-		<% include ../partials/animalMenu %>
-
-		<div id = "animalListing">
-			<section class="animalCards">
-
-			</section>
 		</div>
 		
 	</main>
@@ -72,128 +63,90 @@
 	
 
 
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script>
-
-var call1 = $.ajax('/pets/dog');
-var call2 = $.ajax('/pets/cat');
-var call3 = $.ajax('/pets/other');
-var call4 = $.ajax('/pets/adopted');
-
-$.when(call1, call2, call3, call4).then(function (data1, data2, data3, data4) {
-	var p, img, img2, img3, img4, ob, ob2, ob3, ob4, t, d, s, a, content, wrapper, blogwrapper, adoptedWrapper, otherWrapper, catWrapper, form, button, a;
-		
-	for (var i=data1[0].length -1; i>=0; i--){
-		ob = data1[0][i];
-		p = $('<h4>');
-		p.text(ob.pet_name);
-        img = $("<img>");
-		img.attr("src", ob.img_url);
-		dogWrapper = $("<div class='animal'>");
-		dogWrapper.attr("data-name", ob.pet_name);
-		dogWrapper.append(img, p)
-        $('#dog').append(dogWrapper);
-	}
-    for (var j=data2[0].length -1; j>=0; j--){
-		ob2 = data2[0][j];
-		t = $('<h4>');
-		t.text(ob2.pet_name);
-		img2 = $("<img>");
-		img2.attr("src", ob2.img_url);
-		catWrapper = $("<div class='animal'>");
-		catWrapper.attr("data-name", ob2.pet_name);
-		catWrapper.append(img2, t)
-        $('#cat').append(catWrapper);
-	}
-	for (var k=data3[0].length -1; k>=0; k--){
-		ob3 = data3[0][k];
-		s = $('<h4>');
-		s.text(ob3.pet_name);
-		img3 = $("<img>");
-		img3.attr("src", ob3.img_url);
-		otherWrapper = $("<div class='animal'>");
-		otherWrapper.attr("data-name", ob3.pet_name);
-		otherWrapper.append(img3, s)
-        $('#other').append(otherWrapper);
-	}
-	for (var l=data4[0].length -1; l>=0; l--){
-		ob4 = data4[0][l];
-		a = $('<h4>');
-		a.text(ob4.pet_name);
-		img4 = $("<img>");
-		img4.attr("src", ob4.img_url);
-		adoptedWrapper = $("<div class='animal'>");
-		adoptedWrapper.attr("data-name", ob4.pet_name);
-		adoptedWrapper.append(img4, a)
-        $('#adopted').append(adoptedWrapper);
-	}
-
-	$('.animal').on('click', function(){
-		var ClickOne = $(this);
-		var detail = ClickOne.attr("data-name");
-		//console.log(detail);
-		window.location = "/pet_detail/" + detail;
-	});
-});
-
-// 	$.ajax({
-// 	url: '/content/',
-// 	method: 'GET'
-// }).then(function(data){
-
-// 	var p, img, ob, type, button, a;
-		
-// 	for (var i=data.length -1; i>=0; i--){
-// 		ob = data[i];
-// 		p = $('<h4>');
-//         p.text(ob.pet_name);
-//         img = $("<img>");
-// 		img.attr("src", ob.img_url);
-// 		wrapper = $("<div class='animal'>");
-// 		wrapper.attr("data-name", ob.pet_name);
-// 		wrapper.append(img, p)
-//         $('#pets').append(wrapper);
-// 	}
-// 	$('.animal').on('click', function(){
-// 		var ClickOne = $(this);
-// 		var detail = ClickOne.attr("data-name");
-// 		//console.log(detail);
-// 		window.location = "/pet_detail/" + detail;
-// 	});
-// })
-</script>
-	<!-- jquery and bootstrap js scripts
+	<!-- jquery and bootstrap js scripts -->
 	<% include ../partials/jqueryBootstrapScripts %>
-	
-	<script type="text/javascript">
-        $.ajax({
-            url: '/api/pets',
-            method: 'GET'
-        }).then(function(data){
-            var articleCard, divCardBody, cardImg, cardTitle, cardText, btn; 
-            for (var i=0; i<data.length; i++){
-                ob = data[i];
-                articleCard = $('<article>').addClass("card");
-                cardImg = $('<img>').addClass("card-img-top");
-                cardImg.attr('src', ob.img_url);
-                divCardBody = $('<div>').addClass("card-body");
-                cardTitle = $('<h3>').addClass("card-title");
-                cardTitle.text(ob.pet_name);
-                cardText = $('<p>').addClass("card-text");
-                cardText.text(ob.age + " years old, "+ ob.sex);
-                btn = $('<a>').addClass("btn btn-outline-success btn-sm");
-                btn.attr('href', ob.id);
-                btn.text("Learn more details!");
+	<script>
 
-                divCardBody.append(cardTitle, cardText, btn);
-                articleCard.append(cardImg, divCardBody); 
-                $('.animalCards').append(articleCard);
-            }
-        });
-	</script> -->
+		var call1 = $.ajax('/pets/dog');
+		var call2 = $.ajax('/pets/cat');
+		var call3 = $.ajax('/pets/other');
+		var call4 = $.ajax('/pets/adopted');
+
+		$.when(call1, call2, call3, call4).then(function (data1, data2, data3, data4) {
+			// var p, img, img2, img3, img4, ob, ob2, ob3, ob4, t, d, s, a, content, wrapper, blogwrapper, adoptedWrapper, otherWrapper, catWrapper, form, button, a;
+			var articleCard, divCardBody, cardImg, cardTitle, cardText;
+				
+			for (var i=data1[0].length -1; i>=0; i--){
+				ob = data1[0][i];
+				articleCard = $('<article>').addClass("card");
+				articleCard.attr("data-name", ob.pet_name);
+				cardImg = $('<img>').addClass("card-img-top");
+				cardImg.attr('src', ob.img_url);
+				divCardBody = $('<div>').addClass("card-body");
+				cardTitle = $('<h3>').addClass("card-title");
+				cardTitle.text(ob.pet_name);
+				cardText = $('<p>').addClass("card-text");
+				cardText.text(ob.age + " years old, "+ ob.sex);
+				divCardBody.append(cardTitle, cardText);
+				articleCard.append(cardImg, divCardBody); 
+				$('#dogCards').append(articleCard);
+
+			}
+			for (var j=data2[0].length -1; j>=0; j--){
+				ob2 = data2[0][j];
+				articleCard = $('<article>').addClass("card");
+				articleCard.attr("data-name", ob2.pet_name);
+				cardImg = $('<img>').addClass("card-img-top");
+				cardImg.attr('src', ob2.img_url);
+				divCardBody = $('<div>').addClass("card-body");
+				cardTitle = $('<h3>').addClass("card-title");
+				cardTitle.text(ob2.pet_name);
+				cardText = $('<p>').addClass("card-text");
+				cardText.text(ob2.age + " years old, "+ ob2.sex);
+				divCardBody.append(cardTitle, cardText);
+				articleCard.append(cardImg, divCardBody); 
+				$('#catCards').append(articleCard);
+			}
+			for (var k=data3[0].length -1; k>=0; k--){
+				ob3 = data3[0][k];
+				articleCard = $('<article>').addClass("card");
+				articleCard.attr("data-name", ob3.pet_name);
+				cardImg = $('<img>').addClass("card-img-top");
+				cardImg.attr('src', ob3.img_url);
+				divCardBody = $('<div>').addClass("card-body");
+				cardTitle = $('<h3>').addClass("card-title");
+				cardTitle.text(ob3.pet_name);
+				cardText = $('<p>').addClass("card-text");
+				cardText.text(ob3.age + " years old, "+ ob3.sex);
+				divCardBody.append(cardTitle, cardText);
+				articleCard.append(cardImg, divCardBody); 
+				$('#otherCards').append(articleCard);
+			}
+			for (var l=data4[0].length -1; l>=0; l--){
+				ob4 = data4[0][l];
+				articleCard = $('<article>').addClass("card");
+				articleCard.attr("data-name", ob4.pet_name);
+				cardImg = $('<img>').addClass("card-img-top");
+				cardImg.attr('src', ob4.img_url);
+				divCardBody = $('<div>').addClass("card-body");
+				cardTitle = $('<h3>').addClass("card-title");
+				cardTitle.text(ob4.pet_name);
+				cardText = $('<p>').addClass("card-text");
+				cardText.text(ob4.age + " years old, "+ ob4.sex);
+				divCardBody.append(cardTitle, cardText);
+				articleCard.append(cardImg, divCardBody); 
+				$('#adoptedCards').append(articleCard);
+			}
+
+			$('.card').on('click', function(){
+				var ClickOne = $(this);
+				var detail = ClickOne.attr("data-name");
+				//console.log(detail);
+				window.location = "/pet_detail/" + detail;
+			});
+		});
+
+	</script>
+		
 </body>
 </html>

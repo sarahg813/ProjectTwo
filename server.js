@@ -171,7 +171,7 @@
     res.render('../views/pages/pets', {user: user});
   });
   app.get('/pets/dog', function(req, res){
-    connection.query("SELECT * FROM pets where pet_type = 'dog'",function (error, results, fields) {
+    connection.query("SELECT * FROM pets where pet_type = 'dog' AND adopted = 0",function (error, results, fields) {
       if (error) throw error;
         res.json(results);
     })
@@ -183,7 +183,7 @@
     })
   });
   app.get('/pets/other', function(req, res){
-    connection.query("SELECT * FROM pets where pet_type IN ('rabbit', 'bird', 'mouse')",function (error, results, fields) {
+    connection.query("SELECT * FROM pets where pet_type IN ('rabbit', 'bird', 'mouse') AND adopted = 0",function (error, results, fields) {
       if (error) throw error;
         res.json(results);
     })
