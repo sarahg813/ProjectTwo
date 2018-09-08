@@ -34,7 +34,7 @@
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "password",
   database: "shelter_db"
   });
 
@@ -202,7 +202,7 @@
       if (error) throw error;
 
       var info = results[0];
-      var petId = info.id;
+      var pet_id = info.id;
       var name = info.pet_name;
       var type = info.pet_type;
       var breed = info.breed;
@@ -216,7 +216,7 @@
       res.render('../views/pages/pet_detail',
        {
           user: user,
-          petId: petId,
+          pet_id: pet_id,
           name: name,
           type: type,
           breed: breed,
@@ -250,58 +250,5 @@ app.get('/logout', function(req, res){
 	
 });
 
-
-  // router.get('/myaccout', function(req, res){
-  // 	var user_info = {
-  // 		username : req.session.username,
-  // 		email: req.session.email
-  // 	}
-  
-  // 	res.json(user_info);
-  // });
-
-// var homeRoutes = require('./routes/home.js');
-
-// var blogRoutes = require('./routes/blogs.js');
-
-// var petRoutes = require('./routes/pets.js');
-
-// var aboutRoutes = require('./routes/about.js');
-
-// var contactRoutes = require('./routes/contact.js');
-
-// var petDetailRoutes = require('./routes/pet_details.js');
-
-// var loginRoutes = require('./routes/login.js');
-
-// var signupRoutes = require('./routes/signup.js');
-
-// var myaccountRoutes = require('./routes/myaccount.js');
-
-
-// app.use('/', homeRoutes);
-
-// app.use('/', blogRoutes);
-
-// app.use('/', petRoutes);
-
-// app.use('/', aboutRoutes);
-
-// app.use('/', contactRoutes);
-
-// app.use('/', petDetailRoutes);
-
-// app.use('/', loginRoutes);
-
-// app.use('/', signupRoutes);
-
-// app.use('/', myaccountRoutes);
-
-
-// app.get('/logout', function(req, res){
-// 	req.session.destroy(function(err) {
-// 	   res.redirect('/')
-// 	})
-// })
 
 app.listen(3000);

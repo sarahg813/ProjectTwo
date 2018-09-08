@@ -15,45 +15,26 @@
 
 
 	<main>
-		<div id="tab" class="container">	
-			<ul class="nav nav-tabs">
-				<li class="nav-item">
-					<a class="nav-link active" href="#dog" data-toggle="tab" id="dogp">Dog</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#cat" data-toggle="tab" id="catp">Cat</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#other" data-toggle="tab" id="otherp">Other</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#adopted" data-toggle="tab" id="adoptedp">Adopted</a>
-				</li>
-			</ul>
-
-			<!-- <div class="tab-content ">
-				<div class="tab-pane active" id="dog">
-				</div>
-				<div class="tab-pane" id="cat">
-				</div>
-				<div class="tab-pane" id="other">
-				</div>
-				<div class="tab-pane" id="adopted">
-				</div>
-			</div> -->
-			<div class="tab-content">
-				<div class="tab-pane active" id="dog">
-					<section class="animalCards" id="dogCards"></section>
-				</div>
-				<div class="tab-pane" id="cat">
-					<section class="animalCards" id="catCards"></section>
-				</div>
-				<div class="tab-pane" id="other">
-					<section class="animalCards" id="otherCards"></section>
-				</div>
-				<div class="tab-pane" id="adopted">
-					<section class="animalCards" id="adoptedCards"></section>
-				</div>
+		
+		<ul class="nav nav-tabs">
+			<li><a href="#dog" data-toggle="tab">Dog</a></li>
+			<li><a href="#cat" data-toggle="tab">Cat</a></li>
+			<li><a href="#other" data-toggle="tab">Other</a></li>
+			<li><a href="#adopted" data-toggle="tab">Adopted</a></li>
+		</ul>
+		
+		<div class="tab-content">
+			<div class="tab-pane active" id="dog">
+				<div class="animalCards" id="dogCards"></div>
+			</div>
+			<div class="tab-pane" id="cat">
+				<div class="animalCards" id="catCards"></div>
+			</div>
+			<div class="tab-pane" id="other">
+				<div class="animalCards" id="otherCards"></div>
+			</div>
+			<div class="tab-pane" id="adopted">
+				<div class="animalCards" id="adoptedCards"></div>
 			</div>
 		</div>
 		
@@ -62,11 +43,10 @@
 	<footer>
 		<% include ../partials/footer %>
 	</footer>
-	
-
 
 	<!-- jquery and bootstrap js scripts -->
 	<% include ../partials/jqueryBootstrapScripts %>
+
 	<script>
 
 		var call1 = $.ajax('/pets/dog');
@@ -75,69 +55,69 @@
 		var call4 = $.ajax('/pets/adopted');
 
 		$.when(call1, call2, call3, call4).then(function (data1, data2, data3, data4) {
-			// var p, img, img2, img3, img4, ob, ob2, ob3, ob4, t, d, s, a, content, wrapper, blogwrapper, adoptedWrapper, otherWrapper, catWrapper, form, button, a;
-			var articleCard, divCardBody, cardImg, cardTitle, cardText;
+			
+			var ob, ob2, ob3, ob4, card, divCardBody, cardImg, cardTitle, cardText;
 				
 			for (var i=data1[0].length -1; i>=0; i--){
 				ob = data1[0][i];
-				articleCard = $('<article>').addClass("card");
-				articleCard.attr("data-name", ob.pet_name);
+				card = $('<div>').addClass("card");
+				card.attr("data-name", ob.pet_name);
 				cardImg = $('<img>').addClass("card-img-top");
 				cardImg.attr('src', ob.img_url);
 				divCardBody = $('<div>').addClass("card-body");
-				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text("ID#" + ob.id +" " + ob.pet_name);
+				cardTitle = $('<h4>').addClass("card-title");
+				cardTitle.text(ob.pet_name + " - " + "ID#" + ob.id);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob.age + " years old, "+ ob.sex);
 				divCardBody.append(cardTitle, cardText);
-				articleCard.append(cardImg, divCardBody); 
-				$('#dogCards').append(articleCard);
+				card.append(cardImg, divCardBody); 
+				$('#dogCards').append(card);
 
 			}
 			for (var j=data2[0].length -1; j>=0; j--){
 				ob2 = data2[0][j];
-				articleCard = $('<article>').addClass("card");
-				articleCard.attr("data-name", ob2.pet_name);
+				card = $('<div>').addClass("card");
+				card.attr("data-name", ob2.pet_name);
 				cardImg = $('<img>').addClass("card-img-top");
 				cardImg.attr('src', ob2.img_url);
 				divCardBody = $('<div>').addClass("card-body");
-				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text("ID#" + ob2.id +" " + ob2.pet_name);
+				cardTitle = $('<h4>').addClass("card-title");
+				cardTitle.text(ob2.pet_name + " - " + "ID#" + ob2.id);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob2.age + " years old, "+ ob2.sex);
 				divCardBody.append(cardTitle, cardText);
-				articleCard.append(cardImg, divCardBody); 
-				$('#catCards').append(articleCard);
+				card.append(cardImg, divCardBody); 
+				$('#catCards').append(card);
 			}
 			for (var k=data3[0].length -1; k>=0; k--){
 				ob3 = data3[0][k];
-				articleCard = $('<article>').addClass("card");
-				articleCard.attr("data-name", ob3.pet_name);
+				card = $('<div>').addClass("card");
+				card.attr("data-name", ob3.pet_name);
 				cardImg = $('<img>').addClass("card-img-top");
 				cardImg.attr('src', ob3.img_url);
 				divCardBody = $('<div>').addClass("card-body");
-				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text("ID#" + ob3.id +" " + ob3.pet_name);
+				cardTitle = $('<h4>').addClass("card-title");
+				cardTitle.text(ob3.pet_name + " - " + "ID#" + ob3.id);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob3.age + " years old, "+ ob3.sex);
 				divCardBody.append(cardTitle, cardText);
-				articleCard.append(cardImg, divCardBody); 
-				$('#otherCards').append(articleCard);
+				card.append(cardImg, divCardBody); 
+				$('#otherCards').append(card);
 			}
 			for (var l=data4[0].length -1; l>=0; l--){
 				ob4 = data4[0][l];
-				articleCard = $('<article>').addClass("card");
-				articleCard.attr("data-name", ob4.pet_name);
+				card = $('<div>').addClass("card");
+				card.attr("data-name", ob4.pet_name);
 				cardImg = $('<img>').addClass("card-img-top");
 				cardImg.attr('src', ob4.img_url);
 				divCardBody = $('<div>').addClass("card-body");
-				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text("ID#" + ob4.id +" " + ob4.pet_name);
+				cardTitle = $('<h4>').addClass("card-title");
+				cardTitle.text(ob4.pet_name + " - " + "ID#" + ob4.id);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob4.age + " years old, "+ ob4.sex);
 				divCardBody.append(cardTitle, cardText);
-				articleCard.append(cardImg, divCardBody); 
-				$('#adoptedCards').append(articleCard);
+				card.append(cardImg, divCardBody); 
+				$('#adoptedCards').append(card);
 			}
 
 			$('.card').on('click', function(){

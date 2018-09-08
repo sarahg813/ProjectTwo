@@ -1,14 +1,11 @@
-html {
+html, body {
     height: 100%;
-    min-height: 100%;
+    background-color: #eff3f0;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    color: #383838;
   }
 
-body {
-    height: 100%;
-    min-height: 100%;
-    background-color: #eff3f0;
-    font-family: 'Roboto', sans-serif;
-} 
 
 h2 {
     font-family: 'Abril Fatface', cursive;
@@ -31,6 +28,7 @@ p {
 header {
     width: 100%;
     position: fixed;
+    z-index: 99;
     left: 0;
     top: 0;
     display: flex;
@@ -47,6 +45,7 @@ main {
     margin: 100px 0;
     padding: 2em; 
     width: 100%;
+    height: 475px;
     box-sizing: border-box;
 }
 
@@ -56,9 +55,13 @@ footer {
     bottom: 0;
     width: 100%;
     height: 50px;
-    line-height: 60px;
+    line-height: 50px;
     background-color: white;
     border-top: 2px #f1d1b9 solid;
+    font-family: 'Raleway', sans-serif;
+    font-size: .85em;
+    color: #9e98a4;
+    font-weight: bold;
 }
 
 /* nav - start */
@@ -78,6 +81,7 @@ footer {
     justify-content: flex-end;
     align-items: center;
     font-family: 'Raleway', sans-serif;
+    padding-right: 10px;
 }
 
 .navLinksDiv {
@@ -92,7 +96,7 @@ footer {
     width: 33%;
     font-family: 'Berkshire Swash', cursive;
     color: #209e7b;
-    font-size: 2em;
+    font-size: 2.25em;
     text-decoration: none;
 }
 
@@ -140,125 +144,217 @@ footer {
 .homeDivs {
     display: flex;
     justify-content: space-between;
+    font-family: 'Nunito', sans-serif;
+    color: #383838;
+}
+
+.homeDivs p {
+    font-size: .95em;
+}
+
+h2 {
+    font-family: 'Nova Round', cursive;
+    font-size: 1.75em;
+}
+
+span {
+    font-family: 'Nunito', sans-serif;
+    color: #383838;
 }
 
 .homeLeft {
-    width: 49%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: .5em;
+    width: 65%;
+    padding: .5em 0;
+}
+
+.homeLeft h2,
+.petDetailTitle, 
+.about2,
+.contactDiv h2{
+    color: #ec9191;
 }
 
 .homeRight {
-    width: 49%;
+    width: 35%;
+    height: 445px;
     display: flex;
     justify-content: center;
     background-color: #fde9de;
     padding: .5em;
 }
 
+.homeRight h2,
+#about1 {
+    color: #209e7b;
+}
+
+/* homepage blog - start */
+
 #newsEntry {
     margin-top: 10px;
+    height: 380px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .blog {
     border: .5px #f1d1b9 solid;
-    padding: 5px;
-    margin-bottom: 8px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    line-height: 1.15em;
+    border-radius: 15px;
 }
 
-/* .blog_content {
-    padding: .5px;
-} */
+.blog > h4 {
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+.blog > h5 {
+    font-size: .75em;
+}
+
+.blog_content {
+    line-height: 1.15em;
+    margin-top: 4px;
+}
+/* homepage blog - end */
 
 /* animal cards - start */
-
-.animalCards, #petsPreview {
+.animalCards{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 15px;
+    align-items: flex-start;
+    height: 390px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-.card  {
-    width: 320px;
-    height: 415px;
-    flex: 0 1 24%;
-    margin-top: 15px;
+.card-title {
+    font-weight: bold;
 }
 
-.homeAnimalCard {
-    width: 100px;
-    height: auto;;
-    flex: 0 1 45%;
-    margin-top: 15px;
+#petsPreview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 25px;
 }
 
-.homeAnimalCard  .card-body {
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
+
+#petsPreview .card {
+    width: 9rem;
+    border: 1px #9e9e9e solid;
+    margin-top: 10px;
 }
 
-.card-img-top {
-	display: block;
-	border: 0;
-	width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
+.animalCards .card {
+    width: 12rem;
+    border: 2px #9e9e9e solid;
+    margin-top: 10px;
 }
 /* animal cards - end */
 
-.animalMenu {
+/* pets page - start */
+.nav-tabs {
+    font-family: 'Nova Round', cursive;
+    font-size: 1.25em;
+}
+
+.nav-tabs a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #ec9191;
+}
+
+.nav-tabs a:hover {
+    color: #209e7b;
+}
+/* pets page - end */
+
+/* pet detail - start */
+
+.petDetailDiv {
+    display: flex;  
+    justify-content: space-around;
+}
+
+.petDetailTitle {
+    margin-top: 15px;
+}
+
+.petDetailLeft {
+    width: 65%;
+    padding: .5em ;
+}
+
+#petInfo {
+    line-height: 1.5em;
     margin-top: 20px;
 }
 
 
-/* About page */
-
-#about img {
-    float: right;
-    width: 400px;
-    margin: 0 0 48px 24px;
-}
-
-#about p {
-    margin-bottom: 24px;
-}
-
-/* Contact page */
-#contact ul {
-    margin-bottom: 24px;
-    line-height: 20px;
-}
-
-/* Details page */
-#pet-details:after {
-    content: '';
-    display: block;
-    clear: both;
-}
-
-.detail-label {
-    color: #209e7b;
-    font-weight: 700;
-    margin-right: 10px;
-}
-
-#pet-details p {
-    margin-bottom: 8px;
-}
-
-#pet-details img {
-    float: left;
-    margin-right: 32px;
-}
 
 #apply_info {
     width: 400px;
     height:200px;
 }
+
+.petDetailRight {
+    width: 30%;
+    padding: .5em;
+    display: flex;
+    justify-content: center;
+    background-color: #209e7b;
+}
+
+.petImg{
+    width: 18rem;
+    height: 100%;
+}
+
+.boldText {
+    font-weight: bold;
+}
+/* pet detail - end */
+
+/* about - start */
+.about,
+.contactDiv {
+    line-height: 1.5em;
+    padding: 2em;
+    border: .5px #f1d1b9 solid;
+    height: 445px;
+}
+/* about - end */
+
+/* contact page - start */
+.contactDiv {
+    display: flex;  
+
+    justify-content: space-around;
+}
+
+.contactInfo {
+    line-height: 1.5em;
+    margin-top: 20px;
+}
+
+.mapImg {
+    width: 30rem;
+    height: 100%;
+}
+
+.contactLeft{
+    width: 49%;
+    padding: .5em ;
+}
+.contactRight {
+    width: 49%;
+    padding: .5em;
+}
+/* contact page - end */
 
 /* My account page */
 label {
@@ -282,7 +378,28 @@ input[type="text"] {
     border: none;
 }
 
-
 #login > div {
     margin-bottom: 24px;
 }
+
+/* Details page */
+/* #pet-details:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.detail-label {
+    color: #209e7b;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+#pet-details p {
+    margin-bottom: 8px;
+}
+
+#pet-details img {
+    float: left;
+    margin-right: 32px;
+} */

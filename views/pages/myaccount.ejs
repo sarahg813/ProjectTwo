@@ -35,34 +35,33 @@
                 </div>
         </main>
 
-        <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-      <script>
-      function validateApplyForm() {
-          var email = document.forms["applyForm"]["email"].value;
-          var info = document.forms["applyForm"]["apply_info"].value;
-          var applyId = document.forms["applyForm"]["apply_pet_id"].value;
-          if (email == "" ) {
-              alert("All field must be filled out");
-              return false;
-          }
-          if (info == "" ) {
-              alert("All field must be filled out");
-              return false;
-          }
-          if (applyId == "" ) {
-              alert("All field must be filled out");
-              return false;
-          }
-          return true;
-          }
-      </script>
+        <!-- jquery and bootstrap js scripts -->
+        <% include ../partials/jqueryBootstrapScripts %>
 
         <footer>
                 <% include ../partials/footer %>
         </footer>
+        
+        <script>
+                function validateApplyForm() {
+                        var email = document.forms["applyForm"]["email"].value;
+                        var info = document.forms["applyForm"]["apply_info"].value;
+                        var applyId = document.forms["applyForm"]["apply_pet_id"].value;
+                        if (email == "" ) {
+                        alert("All field must be filled out");
+                        return false;
+                        }
+                        if (info == "" ) {
+                        alert("All field must be filled out");
+                        return false;
+                        }
+                        if (applyId == "" ) {
+                        alert("All field must be filled out");
+                        return false;
+                        }
+                        return true;
+                }
+        </script>
 
 </body>
 </html>
