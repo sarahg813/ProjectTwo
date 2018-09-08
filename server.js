@@ -37,6 +37,10 @@
   password: "password",
   database: "shelter_db"
   });
+
+  process.on('uncaughtException', function (err) {
+    console.log(err);
+});
   
   //homepage
   app.get('/', function(req, res, next){
@@ -92,23 +96,23 @@
     app.get('/myaccount', function(req, res){
       var email = req.session.email;
       var user = req.session.user;
-      var userId = req.session.id;
+     
       
     res.render('../views/pages/myaccount', {
       user: user,
       email: email,
-      userId: userId
+      
     } );
   });
 
   app.post('/apply_adopt', function(req, res){
-    res.json(req.body);
-    connection.query('INSERT INTO apply_users (apply_email, apply_pet_name) VALUES (?, ?)', [req.body.apply_email, req.body.apply_pet_name, ],function (error, results, fields) {
+    //res.json(req.body);
+    connection.query('INSERT INTO apply_users (apply_email, apply_info, apply_pet_id) VALUES (?, ?, ?)', [req.body.apply_email, req.body.apply_info, req.body.apply_pet_id, ],function (error, results, fields) {
           
       if (error){
         res.send('sorry');
       }else{
-        res.redirect('/');
+        res.render('../views/pages/applied');
       }
     });
   })
@@ -140,14 +144,11 @@
     });
   })
 
-
-  
   //about 
   app.get('/about', function(req, res) {
     var user = req.session.user;
     res.render('../views/pages/about', {user: user});
   });
-
 
   //blogs
   app.get('/blogs', function(req, res) {
@@ -155,7 +156,6 @@
     res.render('../views/pages/blogs', {user: user});
   });
   
-
   //contact  
   app.get('/contact', function(req, res) {
     var user = req.session.user;
@@ -249,78 +249,6 @@ app.get('/logout', function(req, res){
 	})
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // router.get('/myaccout', function(req, res){
-  // 	var user_info = {
-  // 		username : req.session.username,
-  // 		email: req.session.email
-  // 	}
-  
-  // 	res.json(user_info);
-  // });
-  
-  
-  
-  
-
-
-
-// var homeRoutes = require('./routes/home.js');
-
-// var blogRoutes = require('./routes/blogs.js');
-
-// var petRoutes = require('./routes/pets.js');
-
-// var aboutRoutes = require('./routes/about.js');
-
-// var contactRoutes = require('./routes/contact.js');
-
-// var petDetailRoutes = require('./routes/pet_details.js');
-
-// var loginRoutes = require('./routes/login.js');
-
-// var signupRoutes = require('./routes/signup.js');
-
-// var myaccountRoutes = require('./routes/myaccount.js');
-
-
-// app.use('/', homeRoutes);
-
-// app.use('/', blogRoutes);
-
-// app.use('/', petRoutes);
-
-// app.use('/', aboutRoutes);
-
-// app.use('/', contactRoutes);
-
-// app.use('/', petDetailRoutes);
-
-// app.use('/', loginRoutes);
-
-// app.use('/', signupRoutes);
-
-// app.use('/', myaccountRoutes);
-
-
-// app.get('/logout', function(req, res){
-// 	req.session.destroy(function(err) {
-// 	   res.redirect('/')
-// 	})
-// })
-
 
 
 app.listen(3000);

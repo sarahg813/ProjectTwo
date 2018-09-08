@@ -7,6 +7,24 @@ html, body {
   }
 
 
+h2 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.6em;
+    color: #209e7b;
+    margin-bottom: 24px;
+}
+
+h3 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    color: #209e7b;
+}
+
+p {
+    line-height: 20px;
+}
+
 header {
     width: 100%;
     position: fixed;
@@ -25,7 +43,7 @@ header {
 main {
     background-color: white;
     margin: 100px 0;
-    padding: 1em; 
+    padding: 2em; 
     width: 100%;
     height: 475px;
     box-sizing: border-box;
@@ -47,15 +65,18 @@ footer {
 }
 
 /* nav - start */
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
 .navbar {
-    width: 70%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
 .accountLogInDiv {
-    width: 30%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -108,6 +129,16 @@ footer {
     border-color: white !important;
     box-shadow: none !important; 
 }
+
+.loginLinks {
+    display: flex;
+    align-items: center;
+}
+
+.loginLinks * {
+    margin-left: 16px;
+}
+
 /* nav - end */
 
 .homeDivs {
@@ -258,7 +289,6 @@ span {
     margin-top: 15px;
 }
 
-
 .petDetailLeft {
     width: 65%;
     padding: .5em ;
@@ -267,6 +297,13 @@ span {
 #petInfo {
     line-height: 1.5em;
     margin-top: 20px;
+}
+
+
+
+#apply_info {
+    width: 400px;
+    height:200px;
 }
 
 .petDetailRight {
@@ -322,6 +359,52 @@ span {
     width: 49%;
     padding: .5em;
 }
-
-
 /* contact page - end */
+
+/* My account page */
+label {
+    display: block;
+}
+
+input, textarea {
+    box-sizing: border-box;
+    margin: 8px 0 24px;
+    width: 400px;
+    border: 1px solid #ccc;
+}
+
+input[type="text"] {
+    padding: 8px;
+}
+
+.btn-primary{
+    display: block;
+    background-color: #209e7b;
+    border: none;
+}
+
+#login > div {
+    margin-bottom: 24px;
+}
+
+/* Details page */
+/* #pet-details:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.detail-label {
+    color: #209e7b;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+#pet-details p {
+    margin-bottom: 8px;
+}
+
+#pet-details img {
+    float: left;
+    margin-right: 32px;
+} */

@@ -28,23 +28,43 @@ CREATE TABLE users(
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE blogs(
+	id INT AUTO_INCREMENT NOT NULL,
+	post_id INT NOT NULL,
+	user_post TEXT,  
+	user_post_date DATE NOT NULL,
+	user_img_url VARCHAR(255),
+	PRIMARY KEY (id),
+	FOREIGN KEY (post_id) REFERENCES users(id)
+);
+
+CREATE TABLE apply_users(
+	id INT AUTO_INCREMENT NOT NULL,
+	apply_email VARCHAR(255) NOT NULL,
+	apply_info TEXT NOT NULL,
+	apply_pet_id INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (apply_pet_id) REFERENCES pets(id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
 CREATE TABLE adopted_pets(
 	id INT AUTO_INCREMENT NOT NULL,
 	adopted_pet_id INT NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (adopted_pet_id) REFERENCES pets(id),
 	
-);
-
-CREATE TABLE apply_users(
-	id INT AUTO_INCREMENT NOT NULL,
-	apply_pet_id INT NOT NULL,
-	apply_email VARCHAR(255) NOT NULL,
-	apply_pet_name VARCHAR(255) NOT NULL,
-	adopted_status BOOLEAN NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (apply_pet_id) REFERENCES pets(id),
-	FOREIGN KEY (apply_email) REFERENCES users(email)
 );
 
 
@@ -65,15 +85,7 @@ CREATE TABLE shelter_blogs(
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE blogs(
-	id INT AUTO_INCREMENT NOT NULL,
-	post_id INT NOT NULL,
-	user_post TEXT,  
-	user_post_date DATE NOT NULL,
-	user_img_url VARCHAR(255),
-	PRIMARY KEY (id),
-	FOREIGN KEY (post_id) REFERENCES users(id)
-);
+
 
 
 

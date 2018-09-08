@@ -6,28 +6,28 @@
 <body class="container">
 
         <header>
-                <% include ../partials/header %>
-                <% include ../partials/accountLogIn %>
+                <div class="container header-wrapper">
+                        <% include ../partials/header %>
+                        <% include ../partials/accountLogIn %>
+                </div>
         </header>
 
-        <main>
+        <main id="myaccount">
                 <div>
                         <% if(user) { %>
-                        <p>Welcome! <%= user %></p>
-                        <p>Your email: <%= email %></p>
-                        <p>Your id: <%= userId %></p>
+                        <h3>Hello! <%= user %> !</h3> 
+                        <h3>Your email is: <%= email %></h3><br><br>
+                        <p>If you decide to adopt a pet from us, please fill out the infomation and we will contact you later. Thank you!</p><br><br>
                         <form name="applyForm" onsubmit="return validateApplyForm()" action="/apply_adopt" method="POST">
-                        <span>Confirm your email: </span><input type="text" name="email"><br>
-                        <label>Tell us about you:
-                                <input name="apply_info" id="apply_info" type="text">
-                        </label>
+                        <label for="email">Confirm your email: </label><input id="email" type="text" name="apply_email"><br>
+                        <label for="apply_info">Tell us about you:</label>
+                        <textarea name="apply_info" id="apply_info" type="text"></textarea>
                         <br>
-                        <label>which pet do you want to apply for adoption:
-                                <input name="pet_name" type="text" id="apply_pet_name">
-                        </label>
-                        <button>Submit</button>
+                        <label for="apply_pet_id">Which pet do you want to apply for adoption? Please enter ID only:</label>
+                        <input name="apply_pet_id" type="text" id="apply_pet_id">
+                        
+                        <button class="btn btn-primary">Submit</button>
                         </form>
-                        <a href="/logout">Log out</a>
                         <% }else{ %>
                         <a href="/login">Sign in</a>
                         <a href="/signup">Sign up</a>
@@ -35,9 +35,33 @@
                 </div>
         </main>
 
+        <!-- jquery and bootstrap js scripts -->
+        <% include ../partials/jqueryBootstrapScripts %>
+
         <footer>
                 <% include ../partials/footer %>
         </footer>
+        
+        <script>
+                function validateApplyForm() {
+                        var email = document.forms["applyForm"]["email"].value;
+                        var info = document.forms["applyForm"]["apply_info"].value;
+                        var applyId = document.forms["applyForm"]["apply_pet_id"].value;
+                        if (email == "" ) {
+                        alert("All field must be filled out");
+                        return false;
+                        }
+                        if (info == "" ) {
+                        alert("All field must be filled out");
+                        return false;
+                        }
+                        if (applyId == "" ) {
+                        alert("All field must be filled out");
+                        return false;
+                        }
+                        return true;
+                }
+        </script>
 
 </body>
 </html>

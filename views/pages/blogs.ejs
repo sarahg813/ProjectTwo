@@ -6,12 +6,14 @@
 <body class="container">
 
 	<header>
-		<% include ../partials/header %>
-		<% include ../partials/accountLogIn %>
+		<div class="container header-wrapper">
+			<% include ../partials/header %>
+			<% include ../partials/accountLogIn %>
+		</div>
 	</header>
 
 	<main>
-
+		<div id="news-blog"></div>
 
 	</main>
 
@@ -21,6 +23,31 @@
 
 	<!-- jquery and bootstrap js scripts -->
 	<% include ../partials/jqueryBootstrapScripts %>
+
+	<script type="text/javascript">
+
+		
+		$.ajax({
+			url: '/content/blog',
+			method: 'GET'
+		}).then(function(data){
+			var p, ob, necc, form, button, a;
+			for (var i=data.length -1; i>=0; i--){
+				ob = data[i];
+				t = $('<h3>');
+				t.text(ob.title);
+				p = $('<h5>');
+				pTime = ob.post_time;
+				pTime = pTime.slice(0,10);
+				p.text(pTime);
+				content = $("<div class='blog_content'>");
+				content.text(ob.shelter_post);
+				blogwrapper = $("<div class='blog'>");
+				blogwrapper.append(t, p, content);
+				$('#news-blog').append(blogwrapper);
+			}
+		});
+	</script>
 	
 </body>
 </html>

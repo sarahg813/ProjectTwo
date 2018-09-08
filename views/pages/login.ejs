@@ -6,17 +6,21 @@
 <body class="container">
 
 	<header>
-		<% include ../partials/header %>
+		<div class="container header-wrapper">
+			<% include ../partials/header %>
+		
+		</div>
 	</header>
 
-	<main>
-	    <div>Please Sign in or <a href="/signup">Sign up</a>.</div>
-        <div>
-        <form method="POST" action="/userlogin">
-        <span>Your email: </span><input type="text" name="email"><br>
-        <span>Password: </span><input type="password" name="pswd"><br>
-        <button>Submit</button>               
-        </div>
+	<main id="login">
+	    <h2>Please Sign in or <a href="/signup">Sign up</a>.</h2>
+		<form method="POST" action="/userlogin">
+			<label>Your email: </label>
+			<input type="text" name="email">
+			<label>Password: </label>
+			<input type="password" name="pswd">
+			<button class="btn btn-primary">Submit</button>               
+		</form>
 	</main>
 
 	<footer>
