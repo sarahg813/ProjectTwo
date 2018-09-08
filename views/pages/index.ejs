@@ -15,13 +15,13 @@
 		<div class = "homeDivs">
 			<div class = "homeLeft">
 				<div id="featuredPets">
-					<h3>Featured Pets</h3>
-					<div id = "petsPreview"></div>
+					<h2>Featured Pets</h2>
+					<div id="petsPreview"></div>
 				</div>
 			</div>
 			<div class = "homeRight">
 				<div id="news">
-					<h3>Shelter News!</h3>
+					<h2>Shelter News!</h2>
 					<div id="newsEntry"></div>
 				</div>
 			</div>
@@ -42,40 +42,40 @@
 		var call2 =  $.ajax('/content/blog');
 
 		$.when(call1, call2).then(function (data1, data2) {
-			// var p, img, ob, ob2, t, d, content, wrapper, blogwrapper, form, button, a;
 			
-			var ob, homeArticleCard, homeDivCardBody, homeCardImg, homeCardTitle, homeCardText, homeCardBtn;
+			var ob, ob2, homeDivCard, homeDivCardBody, homeCardImg, homeCardTitle, homeCardText, homeCardBtn, blogTitle, blogTime, blogContent, blogDiv;
 				
 			for (var i=0; i<data1[0].length; i+=5){
 				ob = data1[0][i];
-				homeArticleCard = $('<article>').addClass("homeAnimalCard");
-				homeArticleCard.attr("data-name", ob.pet_name);
-				homeArticleCard.attr("type", "button");
+				homeDivCard = $('<div>').addClass("card");
+				homeDivCard.attr("data-name", ob.pet_name);
 				homeCardImg = $('<img>').addClass("card-img-top");
 				homeCardImg.attr('src', ob.img_url);
 				homeDivCardBody = $('<div>').addClass("card-body");
 				homeCardTitle = $('<h4>').addClass("card-title");
-				homeCardTitle.text("ID#" + ob.id + ob.pet_name);
+				homeCardTitle.text(ob.pet_name + " - " + "ID#" + ob.id );
 				homeCardText = $('<p>').addClass("card-text");
 				homeCardText.text(ob.age + " years old, "+ ob.sex);
 
 				homeDivCardBody.append(homeCardTitle, homeCardText);
-				homeArticleCard.append(homeCardImg, homeDivCardBody); 
-				$('#petsPreview').append(homeArticleCard);
+				homeDivCard.append(homeCardImg, homeDivCardBody); 
+				$('#petsPreview').append(homeDivCard);
 			}
 			for (var j=data2[0].length -1; j>=0; j--){
 				ob2 = data2[0][j];
-				t = $('<h4>');
-				t.text(ob2.title);
-				d = $('<h5>');
-				d.text(ob2.post_time);
-				content = $("<div class='blog_content'>");
-				content.text(ob2.shelter_post);
-				blogwrapper = $("<div class='blog'>");
-				blogwrapper.append(t, d, content);
-				$('#newsEntry').append(blogwrapper);
+				blogTitle = $('<h4>');
+				blogTitle.text(ob2.title);
+				blogTime = $('<h5>');
+				blogTime.text(ob2.post_time.slice(0, 10));
+				blogContent = $('<div>').addClass("blog_content");
+				blogContent.text(ob2.shelter_post);
+				blogDiv = $('<div>').addClass("blog");
+
+				blogDiv.append(blogTitle, blogTime, blogContent);
+				$('#newsEntry').append(blogDiv);
 			}
-			$('.homeAnimalCard').on('click', function(){
+
+			$('.card').on('click', function(){
 				var ClickOne = $(this);
 				var detail = ClickOne.attr("data-name");
 				//console.log(detail);

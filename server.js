@@ -34,7 +34,7 @@
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "password",
   database: "shelter_db"
   });
   
@@ -202,6 +202,7 @@
       if (error) throw error;
 
       var info = results[0];
+      var pet_id = info.id;
       var name = info.pet_name;
       var type = info.pet_type;
       var breed = info.breed;
@@ -215,6 +216,7 @@
       res.render('../views/pages/pet_detail',
        {
           user: user,
+          pet_id: pet_id,
           name: name,
           type: type,
           breed: breed,
