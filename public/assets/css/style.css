@@ -8,14 +8,14 @@ html, body {
 
 
 h2 {
-    font-family: 'Abril Fatface', cursive;
+    font-family: 'Nova Round', cursive
     font-size: 1.6em;
     color: #209e7b;
     margin-bottom: 24px;
 }
 
 h3 {
-    font-family: 'Abril Fatface', cursive;
+    font-family: 'Nova Round', cursive
     font-size: 1.3em;
     margin-bottom: 12px;
     color: #209e7b;
@@ -37,13 +37,11 @@ header {
     padding: 10px;
     border-bottom: 2px #f1d1b9 solid;
 }
-/* .accountLogInDiv {
-    margin-top: 4em;
-} */
+
 main {
     background-color: white;
     margin: 100px 0;
-    padding: 2em; 
+    padding: 1em; 
     width: 100%;
     height: 475px;
     box-sizing: border-box;
@@ -362,6 +360,12 @@ span {
 /* contact page - end */
 
 /* My account page */
+#myaccount div {
+    height: 390px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
 label {
     display: block;
 }
