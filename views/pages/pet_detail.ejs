@@ -7,42 +7,44 @@
 
 	<header>
 		<% include ../partials/header %>
+		<% include ../partials/accountLogIn %>
 	</header>
 	
 
 
 	<main>
-	  
-	<div>
-	<% if(user) { %>
-	<p>Welcome! <%= user %></p>
-	<a href="/myaccount">My account</a>
-    <a href="/logout">Log out</a>
-    <% }else{ %>
-    <a href="/login">Sign in</a>
-    <a href="/signup">Sign up</a>
-    <% } %>
-	</div>
-
-	  <div><span>Name: </span> <%= name %> </div>
-	  <div><span>Type: </span><%= type %> </div>
-	  <div><span>Breed: </span><%= breed %> </div>
-	  <div><span>Age: </span><%= age %> </div>
-	  <div><span>Sex: </span><%= sex %> </div>
-	  <div><span>Weight: </span><%= weight %> </div>
-	  <div><span>Color: </span><%= color %> </div>
-	  <div><span>Introduction: </span><%= bio %> </div>
-	  <div><img src="<%= img %>"> </div> 
+		<div class="petDetail">
+			<div class="petDetailTitle">
+				<h2>Facts about <%= name %></h2>
+			</div>
+			<div class="petDetailDiv">
+				<div class="petDetailLeft">
+					<div id="petInfo">
+						<span class="boldText"> ID# </span> <span class="factText"> <%= pet_id %> </span><br>
+						<span class="boldText"> Animal Type:</span> <span class="factText"> <%= type %> </span><br>
+						<span class="boldText"> Breed:</span> <span class="factText"> <%= breed %> </span><br>
+						<span class="boldText"> Age:</span> <span class="factText"> <%= age %> </span><br>
+						<span class="boldText"> Sex:</span> <span class="factText"> <%= sex %> </span><br>
+						<span class="boldText"> Weight:</span> <span class="factText"> <%= weight %> </span><br>
+						<span class="boldText"> Color:</span> <span class="factText"> <%= color %> </span><br>
+						<span class="boldText"> About <%= name %>:</span> <span class="factText">  <%= bio %> </span>
+					</div>
+				</div>
+				<div class="petDetailRight">
+					<div id="petPicDiv">
+						<img class ="petImg" src="<%= img %>">
+					</div>
+				</div>
+			</div>
+		</div>	
 	</main>
-	 
-	
-    
-
-
 
 	<footer>
 		<% include ../partials/footer %>
 	</footer>
+
+	<!-- jquery and bootstrap js scripts -->
+	<% include ../partials/jqueryBootstrapScripts %>
 	
 </body>
 </html>

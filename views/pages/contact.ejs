@@ -7,46 +7,48 @@
 
 	<header>
 		<% include ../partials/header %>
+		<% include ../partials/accountLogIn %>
 	</header>
 
 	<main>
-	 
-		<div>
-			<% if(user) { %>
-			<p>Welcome! <%= user %></p>
-			<a href="/myaccount">My account</a>
-			<a href="/logout">Log out</a>
-			<% }else{ %>
-			<a href="/login">Sign in</a>
-			<a href="/signup">Sign up</a>
-			<% } %>
+		<div class="contactDiv">
+			<div class="contactLeft">
+				<div class="contactInfo">
+					<h2>Contact Info</h2>
+	
+					<span class="boldText"> Phone Number:</span> <span class="factText"> 415-555-6897 </span><br>
+					<span class="boldText"> Fax Number:</span> <span class="factText"> 415-555-6899 </span><br>
+					<span class="boldText"> Email:</span> <span class="factText"> info@beautifulshelter.org </span><br><br>
+	
+					<h2>Hours</h2>
+	
+					<span class="boldText">Adoption Center: </span> <br> 
+					<span class="factText"> Wednesday–Sunday 11:00AM - 5:00PM </span><br>
+					<span> Closed Mondays &amp; Tuesdays</span> <br><br>
+	
+					<span class="boldText">All Other Services:  </span><br>
+					<span class="factText"> Open Every Day 10:00AM - 5:30PM </span>
+	
+				</div>
+			</div>
+			
+			<div class="contactRight">
+				<div class="mapDiv">
+					<img class="mapImg" src="../assets/images/google-map.png" alt="">
+				</div>
+			</div>
+			
 		</div>
 		
-		<div>
-			<h3>Contact Info</h3>
-				<ul>
-					<li>Front Desk 123-456-7890</li>
-					<li>General information info@beautifulshelter.org</li>
-					<li>Fax Number 123-654-0987</li>
-				</ul>
-		
-			<h3>Hours</h3>
-				<ul>
-					<h5>Adoption Center: </h5>
-					<li>Wednesday 11-7 </li>
-					<li>Thursday–Sunday 11-5 </li>
-					<li>Closed Mondays &amp; Tuesdays </li>
-					<h5>All Other Services: </h5>
-					<li>Open every day. </li>
-				</ul>
-					
-		</div>
 
 	</main>
 
 	<footer>
 		<% include ../partials/footer %>
 	</footer>
+
+	<!-- jquery and bootstrap js scripts -->
+	<% include ../partials/jqueryBootstrapScripts %>
 	
 </body>
 </html>
