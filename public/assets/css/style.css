@@ -366,6 +366,12 @@ span {
     overflow-x: hidden;
 }
 
+#news-blogs {
+    height: 390px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
 label {
     display: block;
 }
