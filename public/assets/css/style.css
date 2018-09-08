@@ -211,6 +211,11 @@ span {
     margin-top: 25px;
 }
 
+.card:hover {
+    box-shadow: 5px 10px #cccccc;
+    cursor: pointer;
+}
+
 
 #petsPreview .card {
     width: 9rem;
