@@ -6,8 +6,10 @@
 <body class="container">
 
 	<header>
-		<% include ../partials/header %>
-		<% include ../partials/accountLogIn %>
+		<div class="container header-wrapper">
+			<% include ../partials/header %>
+			<% include ../partials/accountLogIn %>
+		</div>
 	</header>
 	
 
@@ -15,17 +17,17 @@
 	<main>
 		<div id="tab" class="container">	
 			<ul class="nav nav-tabs">
-				<li class="active">
-					<a  href="#dog" data-toggle="tab" id="dogp">Dog</a>
+				<li class="nav-item">
+					<a class="nav-link active" href="#dog" data-toggle="tab" id="dogp">Dog</a>
 				</li>
-				<li>
-					<a href="#cat" data-toggle="tab" id="catp">Cat</a>
+				<li class="nav-item">
+					<a class="nav-link" href="#cat" data-toggle="tab" id="catp">Cat</a>
 				</li>
-				<li>
-					<a href="#other" data-toggle="tab" id="otherp">Other</a>
+				<li class="nav-item">
+					<a class="nav-link" href="#other" data-toggle="tab" id="otherp">Other</a>
 				</li>
-				<li>
-					<a href="#adopted" data-toggle="tab" id="adoptedp">Adopted</a>
+				<li class="nav-item">
+					<a class="nav-link" href="#adopted" data-toggle="tab" id="adoptedp">Adopted</a>
 				</li>
 			</ul>
 
@@ -84,7 +86,7 @@
 				cardImg.attr('src', ob.img_url);
 				divCardBody = $('<div>').addClass("card-body");
 				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text(ob.pet_name);
+				cardTitle.text("ID#" + ob.id +" " + ob.pet_name);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob.age + " years old, "+ ob.sex);
 				divCardBody.append(cardTitle, cardText);
@@ -100,7 +102,7 @@
 				cardImg.attr('src', ob2.img_url);
 				divCardBody = $('<div>').addClass("card-body");
 				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text(ob2.pet_name);
+				cardTitle.text("ID#" + ob2.id +" " + ob2.pet_name);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob2.age + " years old, "+ ob2.sex);
 				divCardBody.append(cardTitle, cardText);
@@ -115,7 +117,7 @@
 				cardImg.attr('src', ob3.img_url);
 				divCardBody = $('<div>').addClass("card-body");
 				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text(ob3.pet_name);
+				cardTitle.text("ID#" + ob3.id +" " + ob3.pet_name);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob3.age + " years old, "+ ob3.sex);
 				divCardBody.append(cardTitle, cardText);
@@ -130,7 +132,7 @@
 				cardImg.attr('src', ob4.img_url);
 				divCardBody = $('<div>').addClass("card-body");
 				cardTitle = $('<h3>').addClass("card-title");
-				cardTitle.text(ob4.pet_name);
+				cardTitle.text("ID#" + ob4.id +" " + ob4.pet_name);
 				cardText = $('<p>').addClass("card-text");
 				cardText.text(ob4.age + " years old, "+ ob4.sex);
 				divCardBody.append(cardTitle, cardText);

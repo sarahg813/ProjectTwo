@@ -6,11 +6,13 @@
 <body class="container">
 
 	<header>
-		<% include ../partials/header %>
+        <div class="container header-wrapper">
+            <% include ../partials/header %>
+        </div>
     </header>
 
     <main>
-    <div>Account not found. Please <a href="/login">Sign in</a> or Sign up.</div>
+    <h3>Account not found. Please <a href="/login">Sign in</a> or Sign up.</h3>
 	<form name="myForm" onsubmit="return validateForm()" action="/createuser" method="POST">
     <span>Username: </span><input type="text" name="username"><br>
     <span>Email: </span><input type="text" name="email"><br>
@@ -23,7 +25,7 @@
         <input type="password" id="confirm_password">
         <span id='message'></span>
       </label>
-      <button>Submit</button>
+      <button class="btn btn-primary">Submit</button>
 </form>
 
 

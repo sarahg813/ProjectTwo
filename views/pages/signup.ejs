@@ -13,7 +13,20 @@
     </header>
 
     <main>
-    <h3>Wrong password. Please try again. <a href="/login">Sign in</h3> 
+    <h3>Please <a href="/login">Sign in</a> or Sign up.</h3>
+	<form name="myForm" onsubmit="return validateForm()" action="/createuser" method="POST">
+    <span>Username: </span><input type="text" name="username"><br>
+    <span>Email: </span><input type="text" name="email"><br>
+    <span>Address: </span><input type="text" name="home_address"><br>
+    <label>Create password :
+        <input name="pswd" id="password" type="password">
+      </label>
+      <br>
+      <label>Confirm password:
+        <input type="password" id="confirm_password">
+        <span id='message'></span>
+      </label>
+      <button class="btn btn-primary">Submit</button>
 </form>
 
 

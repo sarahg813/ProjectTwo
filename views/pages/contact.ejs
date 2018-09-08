@@ -6,27 +6,18 @@
 <body class="container">
 
 	<header>
-		<% include ../partials/header %>
+		<div class="container header-wrapper">
+			<% include ../partials/header %>
+			<% include ../partials/accountLogIn %>
+		</div>
 	</header>
 
 	<main>
-	 
-		<div>
-			<% if(user) { %>
-			<p>Welcome! <%= user %></p>
-			<a href="/myaccount">My account</a>
-			<a href="/logout">Log out</a>
-			<% }else{ %>
-			<a href="/login">Sign in</a>
-			<a href="/signup">Sign up</a>
-			<% } %>
-		</div>
-		
-		<div>
+		<div id="contact">
 			<h3>Contact Info</h3>
 				<ul>
 					<li>Front Desk 123-456-7890</li>
-					<li>General information info@beautifulshelter.org</li>
+					<li>General information <a href="mailto:info@beautifulshelter.org">info@beautifulshelter.org</a></li>
 					<li>Fax Number 123-654-0987</li>
 				</ul>
 		

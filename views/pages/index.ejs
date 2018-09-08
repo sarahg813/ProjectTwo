@@ -6,8 +6,10 @@
 <body class="container">
 
 	<header>
-		<% include ../partials/header %>
-		<% include ../partials/accountLogIn %>
+		<div class="container header-wrapper">
+			<% include ../partials/header %>
+			<% include ../partials/accountLogIn %>
+		</div>
 	</header>
 	
 
@@ -55,7 +57,7 @@
 				homeCardImg.attr('src', ob.img_url);
 				homeDivCardBody = $('<div>').addClass("card-body");
 				homeCardTitle = $('<h4>').addClass("card-title");
-				homeCardTitle.text("ID#" + ob.id + ob.pet_name);
+				homeCardTitle.text("ID#" + ob.id +" " + ob.pet_name);
 				homeCardText = $('<p>').addClass("card-text");
 				homeCardText.text(ob.age + " years old, "+ ob.sex);
 
@@ -68,7 +70,9 @@
 				t = $('<h4>');
 				t.text(ob2.title);
 				d = $('<h5>');
-				d.text(ob2.post_time);
+				pTime = ob2.post_time;
+				pTime = pTime.slice(0,10);
+				d.text(pTime);
 				content = $("<div class='blog_content'>");
 				content.text(ob2.shelter_post);
 				blogwrapper = $("<div class='blog'>");

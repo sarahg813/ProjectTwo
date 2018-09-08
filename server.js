@@ -37,6 +37,10 @@
   password: "",
   database: "shelter_db"
   });
+
+  process.on('uncaughtException', function (err) {
+    console.log(err);
+});
   
   //homepage
   app.get('/', function(req, res, next){
@@ -92,23 +96,23 @@
     app.get('/myaccount', function(req, res){
       var email = req.session.email;
       var user = req.session.user;
-      var userId = req.session.id;
+     
       
     res.render('../views/pages/myaccount', {
       user: user,
       email: email,
-      userId: userId
+      
     } );
   });
 
   app.post('/apply_adopt', function(req, res){
-    res.json(req.body);
-    connection.query('INSERT INTO apply_users (apply_email, apply_pet_name) VALUES (?, ?)', [req.body.apply_email, req.body.apply_pet_name, ],function (error, results, fields) {
+    //res.json(req.body);
+    connection.query('INSERT INTO apply_users (apply_email, apply_info, apply_pet_id) VALUES (?, ?, ?)', [req.body.apply_email, req.body.apply_info, req.body.apply_pet_id, ],function (error, results, fields) {
           
       if (error){
         res.send('sorry');
       }else{
-        res.redirect('/');
+        res.render('../views/pages/applied');
       }
     });
   })
@@ -140,14 +144,11 @@
     });
   })
 
-
-  
   //about 
   app.get('/about', function(req, res) {
     var user = req.session.user;
     res.render('../views/pages/about', {user: user});
   });
-
 
   //blogs
   app.get('/blogs', function(req, res) {
@@ -155,7 +156,6 @@
     res.render('../views/pages/blogs', {user: user});
   });
   
-
   //contact  
   app.get('/contact', function(req, res) {
     var user = req.session.user;
@@ -202,6 +202,7 @@
       if (error) throw error;
 
       var info = results[0];
+      var petId = info.id;
       var name = info.pet_name;
       var type = info.pet_type;
       var breed = info.breed;
@@ -215,6 +216,7 @@
       res.render('../views/pages/pet_detail',
        {
           user: user,
+          petId: petId,
           name: name,
           type: type,
           breed: breed,
@@ -249,17 +251,6 @@ app.get('/logout', function(req, res){
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
   // router.get('/myaccout', function(req, res){
   // 	var user_info = {
   // 		username : req.session.username,
@@ -268,12 +259,6 @@ app.get('/logout', function(req, res){
   
   // 	res.json(user_info);
   // });
-  
-  
-  
-  
-
-
 
 // var homeRoutes = require('./routes/home.js');
 
@@ -318,7 +303,5 @@ app.get('/logout', function(req, res){
 // 	   res.redirect('/')
 // 	})
 // })
-
-
 
 app.listen(3000);
