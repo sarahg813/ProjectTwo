@@ -38,12 +38,13 @@ if (process.env.JAWSDB_URL) {
 } else {
   var connection = mysql.createConnection({
     host: "localhost",
-    port: 3306,
     user: "root",
     password: "password",
     database: "shelter_db"
   });
 }
+
+var port = process.env.PORT || 3300;
 
 process.on("uncaughtException", function(err) {
   console.log(err);
@@ -275,4 +276,6 @@ app.get("/logout", function(req, res) {
   });
 });
 
-app.listen(3000);
+app.listen(port, function() {
+  console.log("app is running on" + port);
+});
